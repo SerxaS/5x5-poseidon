@@ -1,1 +1,1 @@
-mod gadgets;
+mod hasher;
