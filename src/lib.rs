@@ -1,1 +1,2 @@
 mod hasher;
+mod test;

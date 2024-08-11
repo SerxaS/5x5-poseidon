@@ -12,7 +12,7 @@ pub fn pow(base: Fr, exp: usize) -> Fr {
 }
 
 // Returns congruent field element for the given hex string.
-fn hex_to_field(item: &str) -> Fr {
+pub fn hex_to_field(item: &str) -> Fr {
     let item = &item[2..];
     let mut bytes = hex::decode(item).expect("Invalid parameters!");
     bytes.reverse();
@@ -48,3 +48,4 @@ pub fn apply_mds(state: [Fr; 5]) -> [Fr; 5] {
 
     new_state
 }
+
