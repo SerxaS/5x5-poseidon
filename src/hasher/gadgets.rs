@@ -11,7 +11,7 @@ pub fn pow(base: Fr, exp: usize) -> Fr {
     mul
 }
 
-// Returns congruent field element for the given hex string.
+/// Returns congruent field element for the given hex string.
 pub fn hex_to_field(item: &str) -> Fr {
     let item = &item[2..];
     let mut bytes = hex::decode(item).expect("Invalid parameters!");
@@ -21,7 +21,7 @@ pub fn hex_to_field(item: &str) -> Fr {
     Fr::from_uniform_bytes(&temp_bytes)
 }
 
-// Returns the round constants for to be used in permutation without prefix.
+/// Returns the round constants for to be used in permutation without prefix.
 pub fn round_constants() -> Vec<Fr> {
     let round_constants_raw = constants::round_constants_raw();
     let round_constants: Vec<Fr> = round_constants_raw
@@ -31,11 +31,13 @@ pub fn round_constants() -> Vec<Fr> {
     round_constants
 }
 
+/// Returns the mds matrix elements without prefix.
 pub fn mds() -> [[Fr; 5]; 5] {
     let mds_raw = constants::mds_raw();
     mds_raw.map(|row| row.map(|item| hex_to_field(item)))
 }
 
+/// Computes MDS matrix for MixLayer operation.
 pub fn apply_mds(state: [Fr; 5]) -> [Fr; 5] {
     let mds = mds();
     let mut new_state = [Fr::zero(); 5];
@@ -48,4 +50,3 @@ pub fn apply_mds(state: [Fr; 5]) -> [Fr; 5] {
 
     new_state
 }
-

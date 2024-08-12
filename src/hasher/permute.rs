@@ -5,6 +5,10 @@ use {
     gadgets::{apply_mds, pow},
 };
 
+/// Mixing rounds with half-full S-box layers and
+/// rounds with partial S-box layers.
+/// More detailed explanation for
+/// https://eprint.iacr.org/2019/458
 pub fn permute(inputs: [Fr; 5]) -> [Fr; 5] {
     let fr = constants::full_rounds();
     let fp = constants::partial_rounds();

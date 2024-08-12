@@ -1,10 +1,13 @@
 #[cfg(test)]
 mod test {
-    use crate::hasher::{gadgets::hex_to_field, permute};
+    use crate::{
+        hasher::{gadgets::hex_to_field, permute},
+        sponge,
+    };
     use halo2::halo2curves::bn256::Fr;
 
     #[test]
-    fn test_poseidon_5x5() {
+    fn test_poseidon_permute_5x5() {
         // Testing 5x5 input.
         let inputs: [Fr; 5] = [
             "0x0000000000000000000000000000000000000000000000000000000000000000",
@@ -27,5 +30,28 @@ mod test {
         let out = permute::permute(inputs);
 
         assert_eq!(out, outputs);
+    }
+
+    #[test]
+    fn test_poseidon_squeeze_5x5() {
+        // Testing 5x5 input.
+        let inputs: Vec<Fr> = [
+            "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "0x0000000000000000000000000000000000000000000000000000000000000002",
+            "0x0000000000000000000000000000000000000000000000000000000000000003",
+            "0x0000000000000000000000000000000000000000000000000000000000000004",
+        ]
+        .map(|n| hex_to_field(n))
+        .to_vec();
+
+        let outputs: Vec<Fr> =
+            ["0x299c867db6c1fdd79dcefa40e4510b9837e60ebb1ce0663dbaa525df65250465"]
+                .map(|n| hex_to_field(n))
+                .to_vec();
+
+        let out = sponge::squeeze(inputs);
+
+        assert_eq!(out, outputs[0]);
     }
 }

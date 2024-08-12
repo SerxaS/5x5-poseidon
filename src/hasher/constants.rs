@@ -9,8 +9,8 @@ pub fn partial_rounds() -> usize {
 }
 
 pub fn sbox_exp() -> usize {
-    let t = 5;
-    t
+    let exp = 5;
+    exp
 }
 
 pub fn round_constants_raw() -> Vec<&'static str> {
