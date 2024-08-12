@@ -21,7 +21,7 @@ pub fn hex_to_field(item: &str) -> Fr {
     Fr::from_uniform_bytes(&temp_bytes)
 }
 
-/// Returns the round constants for to be used in permutation without prefix.
+/// Returns the round constants to be used in the permutation without the prefix.
 pub fn round_constants() -> Vec<Fr> {
     let round_constants_raw = constants::round_constants_raw();
     let round_constants: Vec<Fr> = round_constants_raw
