@@ -1,11 +1,9 @@
 pub fn full_rounds() -> usize {
-    let fr = 8;
-    fr
+    8
 }
 
 pub fn partial_rounds() -> usize {
-    let fp = 60;
-    fp
+    60
 }
 
 pub fn round_constants_raw() -> Vec<&'static str> {
