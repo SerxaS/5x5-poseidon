@@ -12,7 +12,6 @@ use {
 pub fn permute(inputs: [Fr; 5]) -> [Fr; 5] {
     let fr = constants::full_rounds();
     let fp = constants::partial_rounds();
-    let t = constants::sbox_exp();
     let rc = gadgets::round_constants();
 
     let mut state = inputs;
@@ -22,13 +21,13 @@ pub fn permute(inputs: [Fr; 5]) -> [Fr; 5] {
     for round in 0..fr / 2 {
         // Round constants, nonlinear layer, matrix multiplication.
         // 1. step Add Round Constants.
-        for i in 0..t {
+        for i in 0..5 {
             state[i] = state[i] + rc[round_constants_counter];
             round_constants_counter += 1;
         }
 
         // 2. step applying S-boxes for the full round.
-        for i in 0..t {
+        for i in 0..5 {
             state[i] = pow(state[i], 5)
         }
 
@@ -40,7 +39,7 @@ pub fn permute(inputs: [Fr; 5]) -> [Fr; 5] {
     for round in 0..fp {
         // Round constants, nonlinear layer, matrix multiplication.
         // 1. step Add Round Constants.
-        for i in 0..t {
+        for i in 0..5 {
             state[i] = state[i] + rc[round_constants_counter];
             round_constants_counter += 1;
         }
@@ -56,13 +55,13 @@ pub fn permute(inputs: [Fr; 5]) -> [Fr; 5] {
     for round in 0..fr / 2 {
         // Round constants, nonlinear layer, matrix multiplication.
         // 1. step Add Round Constants.
-        for i in 0..t {
+        for i in 0..5 {
             state[i] = state[i] + rc[round_constants_counter];
             round_constants_counter += 1;
         }
 
         // 2. step applying S-boxes for the full round.
-        for i in 0..t {
+        for i in 0..5 {
             state[i] = pow(state[i], 5)
         }
 

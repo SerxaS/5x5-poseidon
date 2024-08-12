@@ -8,11 +8,6 @@ pub fn partial_rounds() -> usize {
     fp
 }
 
-pub fn sbox_exp() -> usize {
-    let exp = 5;
-    exp
-}
-
 pub fn round_constants_raw() -> Vec<&'static str> {
     [
         "0x0eb544fee2815dda7f53e29ccac98ed7d889bb4ebd47c3864f3c2bd81a6da891",
