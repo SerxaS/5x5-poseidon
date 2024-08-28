@@ -1,5 +1,7 @@
 use super::*;
-use halo2::halo2curves::bn256::Fr;
+
+use ark_bn254::Fr;
+
 use {
     constants,
     gadgets::{apply_mds, pow},

@@ -1,5 +1,8 @@
 use super::*;
-use halo2::halo2curves::{bn256::Fr, ff::FromUniformBytes};
+
+use ark_bn254::Fr;
+use ark_ff::PrimeField;
+use ark_ff::{One, Zero};
 
 /// Calculates exponent of a given field element.
 pub fn pow(base: Fr, exp: usize) -> Fr {
@@ -18,7 +21,7 @@ pub fn hex_to_field(item: &str) -> Fr {
     bytes.reverse();
     let mut temp_bytes = [0; 64];
     temp_bytes[..bytes.len()].copy_from_slice(&bytes[..]);
-    Fr::from_uniform_bytes(&temp_bytes)
+    Fr::from_le_bytes_mod_order(&temp_bytes)
 }
 
 /// Returns the round constants to be used in the permutation without the prefix.

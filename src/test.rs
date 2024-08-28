@@ -4,7 +4,8 @@ mod test {
         hasher::{gadgets::hex_to_field, permute},
         sponge,
     };
-    use halo2::halo2curves::bn256::Fr;
+
+    use ark_bn254::Fr;
 
     #[test]
     fn test_poseidon_permute_5x5() {

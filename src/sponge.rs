@@ -1,6 +1,7 @@
-use halo2::halo2curves::bn256::Fr;
+use ark_bn254::Fr;
 
 use crate::hasher::permute;
+use ark_ff::Zero;
 
 /// Absorb the data and split it chunk of size 5.
 pub fn load_state(chunk: &[Fr]) -> [Fr; 5] {
